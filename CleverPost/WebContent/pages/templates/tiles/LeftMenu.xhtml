@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<h:head>
+	<title>#{msg.title}</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:growl id="messages" />
+		<p:menu style="width:95%">
+			<p:menuitem value="#{msg.menuPosts}"
+				url="#{request.contextPath}/../pages/secure/admin/PostList.jsf?faces-redirect=true"
+				icon="ui-icon-power" />
+				
+				<p:menuitem value="#{msg.menuStatisticGroup}"
+				url="#{request.contextPath}/../pages/secure/admin/StatisticGroupList.jsf?faces-redirect=true"
+				icon="ui-icon-power" />
+				
+			<ui:remove>
+				<p:menuitem value="#{msg.menuIngredientGroups}"
+					url="#{request.contextPath}/../pages/secure/admin/IngredientGroupList.jsf?faces-redirect=true"
+					icon="ui-icon-power" />
+			</ui:remove>
+
+			<ui:remove>
+				<p:menuitem value="#{msg.menuLogout}"
+					action="#{loginMntBean.logout}" icon="ui-icon-power" />
+			</ui:remove>
+		</p:menu>
+	</h:form>
+</h:body>
+</html>

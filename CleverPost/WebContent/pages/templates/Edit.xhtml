@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<ui:composition template="layout.xhtml">
+	<ui:define name="body">
+
+		<div class="content">
+			<p:outputPanel id="form_panel">
+				<p:panel header="#{edit_title}">
+					<p:messages id="validationMessages" />
+					<h:form>
+						<ui:insert name="editBody"></ui:insert>
+						<p:outputPanel id="btn_line">
+							<div class="btn_line" style="text-align: center">
+
+								<ui:insert name="additional_buttons"></ui:insert>
+								<p:commandButton id="save_btn" onclick="#{save_onclick}"
+									action="#{bean.onSave}"
+									rendered="#{empty showSave ? true : showSave}"
+									value="#{empty save_button_text ? msg.save : save_button_text}"
+									oncomplete="#{save_oncomplete}" icon="ui-icon-disk" />
+								<p:commandButton id="cancel_btn" action="#{bean.goBack}"
+									value="#{empty customCancelMsg ? msg.cancel : customCancelMsg}"
+									icon="ui-icon-circle-close" />
+								<p:commandButton value="#{msg.setDefault}"
+									rendered="#{!empty showDefaultBtn}"
+									icon="ui-icon ui-icon-arrowreturnthick-1-s"
+									id="setDefaultButton" action="#{bean.setDefault}" />
+
+							</div>
+						</p:outputPanel>
+					</h:form>
+				</p:panel>
+			</p:outputPanel>
+
+			<script type="text/javascript">
+					function addTitle()
+					{
+
+						var array = $('.not_valid');
+						for ( var i = 0; array.length > i; i++)
+						{
+							if (array[i].title == "")
+							{
+								try
+								{
+
+									var index = array[i].className.split(' ')
+											.indexOf("not_valid");
+									var message = array[i].className.split(' ')[index + 1];
+									if (message != undefined)
+									{
+										$(array[i]).attr("title",
+												message.replace(/_/g, ' '));
+									} else
+									{
+										$(array[i]).attr("title",
+												"#{msg.requiredField}");
+									}
+
+								} catch (e)
+								{
+								}
+							}
+						}
+					}
+					addTitle();
+				</script>
+
+			<ui:insert name="dialog_body"></ui:insert>
+		</div>
+
+	</ui:define>
+</ui:composition>
+</html>

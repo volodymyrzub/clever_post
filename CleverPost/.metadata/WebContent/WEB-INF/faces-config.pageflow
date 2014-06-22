@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13670980485240" configfile="/CleverPost/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="pages/home/home.xhtml" x="122" y="178" id="pf13671284032620" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" path="/pages/home/home.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/unsecure/unsecured.xhtml" x="122" y="562" id="pf13671284032636" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" path="/pages/unsecure/unsecured.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/common/login.xhtml" x="338" y="946" id="pf13671284032637" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf13787476475050" inlinks="pf14034413835590" path="/pages/common/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/secure/OrderList.xhtml" x="554" y="946" id="pf13787476475061" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf13787476475050" path="/pages/secure/OrderList.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/secure/*" x="122" y="1330" id="pf13789260861741" referenceLink="//@navigationRule.0/@fromViewId|" path="/pages/secure/*"/>
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="946" id="pf14034413835591" outlinks="pf14034413835590" path="*"/>
+  <links id="pf13787476475050" target="pf13787476475061" source="pf13671284032637" outcome="Secured" redirect="true" fromaction="#{loginMntBean.login}"/>
+  <links id="pf14034413835590" target="pf13671284032637" source="pf14034413835591" outcome="loggedout" redirect="true" fromaction="#{loginMntBean.logout()}"/>
+</pageflow:Pageflow>

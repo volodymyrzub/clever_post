@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="
+ 
+http://www.springframework.org/schema/beans
+ 
+ 
+http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+ 
+ 
+http://www.springframework.org/schema/security
+ 
+ 
+http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<beans:bean id="navigationBean" name="navigationBean"
+		class="com.cleverpost.admin.web.bean.base.NavigationBean" scope="session">
+	</beans:bean>
+
+	<beans:bean id="loginBean" name="loginBean"
+		class="com.cleverpost.admin.web.bean.base.LoginBean" scope="prototype">
+		<beans:property name="authenticationManager" ref="authenticationManager"></beans:property>
+		<beans:property name="rememberMeServices" ref="rememberMeServices"></beans:property>
+	</beans:bean>
+
+	<beans:bean id="rememberMeServices"
+		class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices">
+		<beans:property name="key" value="jsfspring-sec" />
+		<beans:property name="userDetailsService" ref="userDetailsService" />
+		<beans:property name="alwaysRemember" value="true" />
+		<beans:property name="tokenValiditySeconds" value="60" />
+	</beans:bean>
+
+	<beans:bean id="rememberMeAuthenticationProvider"
+		class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
+		<beans:property name="key" value="jsfspring-sec" />
+	</beans:bean>
+
+	<beans:bean id="rememberMeFilter"
+		class="org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter">
+		<beans:property name="rememberMeServices" ref="rememberMeServices" />
+		<beans:property name="authenticationManager" ref="authenticationManager" />
+	</beans:bean>
+	
+	<beans:bean id="customjdbcUserService"
+		class="com.mobile.cleverpost.rest.persistence.dao.security.CustomJDBCDao">
+		<beans:property name="dataSource" ref="dataSource" />
+		<beans:property name="enableAuthorities" value="true" />
+		<beans:property name="usersByUsernameQuery">
+			<beans:value>SELECT JSF_SPRING_SEC_USERS_USERNAME,
+				JSF_SPRING_SEC_USERS_PASSWORD, JSF_SPRING_SEC_USERS_ENABLED FROM
+				USERS WHERE JSF_SPRING_SEC_USERS_USERNAME = ?
+			</beans:value>
+		</beans:property>
+		<beans:property name="authoritiesByUsernameQuery">
+			<beans:value>
+				select
+				JSF_SPRING_SEC_ROLES_USERNAME,JSF_SPRING_SEC_ROLES_ROLE_NAME from
+				ROLES where JSF_SPRING_SEC_ROLES_USERNAME = ?
+			</beans:value>
+		</beans:property>
+	</beans:bean>
+	
+	<beans:bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<beans:property name="url"
+			value="jdbc:mysql://localhost/clever_post" />
+		<beans:property name="username" value="root" />
+		<beans:property name="password" value="" />
+	</beans:bean>
+</beans:beans>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<ui:composition template="../../templates/Edit.xhtml">
+	<ui:param name="bean" value="#{categoryEditBean}"></ui:param>
+	<ui:param name="isGoBackDisplayed" value="false"></ui:param>
+	<ui:param name="list_title" value="#{msg.categoriesTitle}"></ui:param>
+	<ui:define name="editBody">
+
+		<h:panelGrid columns="2" styleClass="grid">
+
+			<span>#{msg.productCategoryName}*:</span>
+			<p:inputText id="name" value="#{bean.entity.name}" />
+
+			<span>#{msg.productCategoryParent}*:</span>
+			<p:selectOneMenu id="productCategoryParent" value="#{bean.selected}"
+				valueChangeListener="#{bean.parentSelected}">
+				<f:selectItems value="#{bean.parents}" />
+				<p:ajax update="@this" />
+			</p:selectOneMenu>
+
+			<span>#{msg.productCategoryPicture}*:</span>
+			<p:graphicImage id="picture" value="#{bean.picture}" height="100">
+			</p:graphicImage>
+
+			<span></span>
+			<p:fileUpload styleClass="files" fileUploadListener="#{bean.upload}"
+				mode="advanced" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+				sizeLimit="10000000" auto="true" description="Select Images"
+				label="#{msg.fileUploadChoos}" update="picture" style="width:96px">
+			</p:fileUpload>
+
+		</h:panelGrid>
+
+
+	</ui:define>
+</ui:composition>
+</html>

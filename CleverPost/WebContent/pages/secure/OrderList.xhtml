@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<ui:composition template="../templates/List.xhtml">
+	<ui:param name="bean" value="#{orderListBean}"></ui:param>
+	<ui:param name="list_title" value="#{msg.orderListTitle}"></ui:param>
+	<ui:param name="dontShowLeftMenu" value="true"></ui:param>
+	<ui:param name="displayControlPanel" value="false"></ui:param>
+
+	<ui:define name="in_list_edit_body">
+		<h:panelGrid columns="4" cellpadding="7">
+			<p:outputLabel>#{msg.orderFilterDateStart}</p:outputLabel>
+			<p:calendar effect="fadeIn" showButtonPanel="true" locale="ru"
+				navigator="true"></p:calendar>
+
+			<p:outputLabel>#{msg.orderFilterDateEnd}</p:outputLabel>
+			<p:calendar effect="fadeIn" showButtonPanel="true" navigator="true"></p:calendar>
+		</h:panelGrid>
+	</ui:define>
+	<ui:define name="columns">
+
+		<p:column headerText="#{msg.orderTableName}">
+			<h:outputText value="#{item.name}" />
+		</p:column>
+
+		<p:column headerText="#{msg.orderTableStatus}">
+			<h:outputText value="#{item.name}" />
+		</p:column>
+		
+			<p:column headerText="#{msg.orderTableProducts}">
+			<h:outputText value="#{item.name}" />
+		</p:column>
+
+	</ui:define>
+</ui:composition>
+</html>

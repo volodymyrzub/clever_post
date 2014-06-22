@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<ui:composition template="../../templates/List.xhtml">
+	<ui:param name="bean" value="#{statisticGroupListBean}"></ui:param>
+	<ui:param name="list_title" value="#{msg.productTitle}"></ui:param>
+	<ui:define name="columns">
+
+		
+		<p:column headerText="#{msg.fullCoverage}">
+			<h:outputText value="#{item.fullCoverage}" />
+		</p:column>
+		
+		<p:column headerText="#{msg.coverageUser}">
+			<h:outputText value="#{item.coverageUser}" />
+		</p:column>
+		
+		<p:column headerText="#{msg.visitors}">
+			<h:outputText value="#{item.visitors}" />
+		</p:column>
+		
+		<p:column headerText="#{msg.views}">
+			<h:outputText value="#{item.views}" />
+		</p:column>
+		
+		<p:column headerText="#{msg.visibility}">
+			<h:outputText value="#{item.visibility}" />
+		</p:column>
+		
+		<p:column headerText="#{msg.intersectionAudience}">
+			<h:outputText value="#{item.intersectionAudience}" />
+		</p:column>
+
+	</ui:define>
+
+</ui:composition>
+</html>

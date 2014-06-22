@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<ui:composition template="../../templates/Edit.xhtml">
+	<ui:param name="bean" value="#{parameterCategoryEditBean}"></ui:param>
+	<ui:param name="list_title" value="#{msg.parameterCategoryTitle}"></ui:param>
+	<ui:param name="isGoBackDisplayed" value="false"></ui:param>
+	<ui:define name="editBody">
+
+		<h:panelGrid columns="2" styleClass="grid">
+
+			<span>#{msg.parameterCategoryName}*:</span>
+			<p:inputText id="name" value="#{bean.entity.name}" />
+
+		</h:panelGrid>
+	</ui:define>
+</ui:composition>
+</html>

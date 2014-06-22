@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link rel="stylesheet" type="text/css" href="../templates/default.css" />
+</h:head>
+<h:body style="background-image: url('../templates/img/bg.png'); background-color: #444444">
+	<h:form>
+		<div style="position: absolute; top:0; left:0; width: 100%;">
+		<ui:include src="../templates/menu.xhtml" />
+		</div>
+		<div id="slogan" align="center">CleverPost - больше возможностей
+			реализации ваших идей!</div>
+		<p:panel id="basic1"
+			style="position:absolute; left:300px; top:100px; width:400px">
+			<h:panelGrid columns="1" cellpadding="10">
+				<p>CleverPost – современный, удобный сервис управления
+					сообществами ВКонтакте!</p>
+				<p>CleverPost – это:</p>
+				<ul>
+					<li>удобный и точный автопостинг с возможностью репоста;</li>
+					<li>статистика и динамика развития сообщества;</li>
+					<li>отслеживание качества рекламы и обменов;</li>
+					<li>поиск сообщений и сообществ по параметрам.</li>
+				</ul>
+			</h:panelGrid>
+		</p:panel>
+		<p:panel id="basic3" header="Вход"
+			style="position:absolute;width:400px;right:300px;top:100px;">
+			<h:panelGrid columns="1" cellpadding="10">
+				<!-- Put this script tag to the <head> of your page -->
+				<script type="text/javascript" src="//vk.com/js/api/openapi.js?113"></script>
+
+				<script type="text/javascript">
+					VK.init({
+						apiId : 4422122
+					});
+				</script>
+
+				<!-- Put this div tag to the place, where Auth block will be -->
+				<div id="vk_auth"></div>
+				<script type="text/javascript">
+					VK.Widgets.Auth("vk_auth", {
+						width : "340px",
+						onAuth : function(data) {
+							location.href = "http://cleverpost.com/CleverPost/pages/secure/admin/PostList.jsf";
+						}
+					});
+				</script>
+			</h:panelGrid>
+		</p:panel>
+
+		<p:panel id="basic4" header="Наше сообщество"
+			style="position:absolute; right:300px; top:300px; width:400px">
+			<h:panelGrid columns="1" cellpadding="10">
+				<script type="text/javascript" src="//vk.com/js/api/openapi.js?113"></script>
+
+				<!-- VK Widget -->
+				<div id="vk_groups"></div>
+				<script type="text/javascript">
+					VK.Widgets.Group("vk_groups", {
+						wide : 1,
+						mode : 2,
+						width : "360",
+						height : "400",
+						color1 : 'FFFFFF',
+						color2 : '2B587A',
+						color3 : '5B7FA6'
+					}, 48200734);
+				</script>
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
+</h:body>
+</html>

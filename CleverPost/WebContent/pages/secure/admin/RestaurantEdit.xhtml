@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<ui:composition template="../../templates/Edit.xhtml">
+	<ui:param name="bean" value="#{restaurantEditBean}"></ui:param>
+	<ui:param name="list_title" value="#{msg.restaurantsTitle}"></ui:param>
+	<ui:param name="isGoBackDisplayed" value="false"></ui:param>
+	<ui:define name="editBody">
+
+		<h:panelGrid columns="2" styleClass="grid">
+
+			<span>#{msg.restaurantName}*:</span>
+			<p:inputText id="name" value="#{bean.entity.name}" />
+
+			<span>#{msg.restaurantPicture}*:</span>
+			<p:graphicImage id="picture" value="#{bean.picture}" height="100">
+			</p:graphicImage>
+
+			<span></span>
+			<p:fileUpload styleClass="files" fileUploadListener="#{bean.upload}"
+				mode="advanced" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+				sizeLimit="10000000" auto="true" description="Select Images"
+				update="picture" style="width:100px" label="#{msg.fileUploadChoos}"  >
+			</p:fileUpload>
+
+			<span>#{msg.restaurantAddress}*:</span>
+			<p:inputText id="address" value="#{bean.entity.address}" />
+
+			<span>#{msg.restaurantPhone}*:</span>
+			<p:inputMask value="#{bean.entity.phone}" mask="(999) 999-9999" />
+
+			<span>#{msg.restaurantPickup}*:</span>
+			<p:selectOneMenu id="pickup" value="#{bean.entity.pickup}">
+				<f:selectItem itemLabel="Да" itemValue="Да" />
+				<f:selectItem itemLabel="Нет" itemValue="Нет" />
+			</p:selectOneMenu>
+
+			<span>#{msg.restaurantDescription}*:</span>
+			<p:inputTextarea rows="3" cols="50"
+				value="#{bean.entity.description}" />
+
+		</h:panelGrid>
+
+	</ui:define>
+</ui:composition>
+</html>

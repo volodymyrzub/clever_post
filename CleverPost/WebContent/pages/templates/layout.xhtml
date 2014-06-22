@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>#{msg.title}</title>
+
+	<link
+		href="#{facesContext.externalContext.requestContextPath}/pages/templates/default.css"
+		media="all" rel="stylesheet" type="text/css" />
+
+
+	<script type="text/javascript">
+		PrimeFaces.locales['ru'] = {
+			closeText : 'Закрыть',
+			prevText : 'Назад',
+			nextText : 'Вперёд',
+			monthNames : [ 'Январь', 'Февраль', 'Март', 'Апрель', 'Май',
+					'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь',
+					'Декабрь' ],
+			monthNamesShort : [ 'Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн',
+					'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек' ],
+			dayNames : [ 'Воскресенье', 'Понедельник', 'Вторник', 'Среда',
+					'Четверг', 'Пятница', 'Субота' ],
+			dayNamesShort : [ 'Воск', 'Пон', 'Вт', 'Ср', 'Четв', 'Пят', 'Суб' ],
+			dayNamesMin : [ 'В', 'П', 'Вт', 'С ', 'Ч', 'П ', 'Сб' ],
+			weekHeader : 'Неделя',
+			firstDay : 1,
+			isRTL : false,
+			showMonthAfterYear : false,
+			yearSuffix : '',
+			timeOnlyTitle : 'Только время',
+			timeText : 'Время',
+			hourText : 'Час',
+			minuteText : 'Минута',
+			secondText : 'Секунда',
+			currentText : 'Сегодня',
+			ampm : false,
+			month : 'Месяц',
+			week : 'неделя',
+			day : 'День',
+			allDayText : 'Весь день'
+		};
+	</script>
+</h:head>
+<h:body>
+	<p:layout fullPage="true">
+
+		<p:layoutUnit position="north" size="145" header="#{list_title}"
+			resizable="false" closable="false" collapsible="false">
+			<ui:include src="../templates/tiles/TopMenu.xhtml" />
+		</p:layoutUnit>
+		<h:form>
+			<div style="position:absolute; right: 1px; top:7px; z-index: 100;">
+			<p:themeSwitcher style="width:165px" id="themeSwitcher"
+				value="#{msg.chooseTheme}">
+				<f:selectItem itemLabel="#{msg.chooseTheme}"
+					itemValue="#{layoutBean.theme}" />
+				<f:selectItems value="#{layoutBean.themes}" />
+				
+			</p:themeSwitcher>
+
+		</div> 
+			<p:menubar>
+				<p:submenu label="Главная" icon="ui-icon-home"/>
+
+				<p:submenu label="Рейтинг" icon="ui-icon-star" />
+
+				<p:submenu label="Партнеры" icon="ui-icon-heart" />
+				<p:submenu label="F.A.Q." icon="ui-icon-help" />
+				<p:submenu label="#{msg.exit}" icon="ui-icon-extlink" >
+					<p:menuitem value="Профиль"
+						url="#" />
+					<p:menuitem value="Выход" url="../../temp/start.jsf" action="#{loginMntBean.logout()}"> </p:menuitem>
+				</p:submenu>
+		
+			</p:menubar>
+		</h:form>
+
+		<!-- <p:layoutUnit position="south" size="100" header="Bottom" resizable="true" closable="true" collapsible="true">
+                <h:outputText value="South unit content." />
+            </p:layoutUnit> -->
+
+		<p:layoutUnit position="west" size="340" header=""
+			rendered="#{empty dontShowLeftMenu ?true:false }" resizable="false"
+			closable="false" collapsible="true">
+			<ui:include src="../templates/tiles/LeftMenu.xhtml" />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center" id="body">
+			<ui:insert name="body">Hello!</ui:insert>
+		</p:layoutUnit>
+
+
+	</p:layout>
+</h:body>
+</html>

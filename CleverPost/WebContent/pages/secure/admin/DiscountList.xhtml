@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<ui:composition template="../../templates/List.xhtml">
+	<ui:param name="bean" value="#{discountListBean}"></ui:param>
+	<ui:param name="list_title" value="#{msg.discountTitle}"></ui:param>
+	<ui:define name="columns">
+
+		<p:column sortBy="#{item.name}" headerText="#{msg.discountTableName}">
+			<h:outputText value="#{item.name}" />
+		</p:column>
+
+		<p:column headerText="#{msg.discountTablePicture}">
+			<p:graphicImage value="../../../img/Discount/#{item.picture}"
+				height="50">
+			</p:graphicImage>
+		</p:column>
+
+		<p:column sortBy="#{item.startAction}" headerText="#{msg.tableStartAction}">
+			 <h:outputText value="#{item.startAction}" id="startAction">  
+                <f:convertDateTime pattern="d/M/yyyy"/>  
+            </h:outputText>  
+			
+		</p:column>
+
+		<p:column sortBy="#{item.endAction}" headerText="#{msg.tableEndAction}">
+			<h:outputText value="#{item.endAction}" id="endAction">  
+                <f:convertDateTime pattern="d/M/yyyy"/>  
+            </h:outputText> 
+		</p:column>
+
+		<p:column sortBy="#{item.timeOnAction}" headerText="#{msg.tableTimeOnAction}">
+			<h:outputText value="#{item.timeOnAction}">
+			<f:convertDateTime pattern="HH:mm:ss" /> 
+			</h:outputText>
+		</p:column>
+		
+		<p:column sortBy="#{item.timeOffAction}" headerText="#{msg.tableTimeOffAction}">
+			<h:outputText value="#{item.timeOffAction}">
+				<f:convertDateTime pattern="HH:mm:ss" /> 
+			</h:outputText>
+		</p:column>
+
+		<p:column sortBy="#{item.daysWeek}" headerText="#{msg.tableDaysWeek}">
+			<h:outputText value="#{item.daysWeek}" />
+		</p:column>
+
+		<p:column sortBy="#{item.about}" headerText="#{msg.discountTableAbout}">
+			<h:outputText value="#{item.about}" />
+		</p:column>
+
+	</ui:define>
+</ui:composition>
+</html>

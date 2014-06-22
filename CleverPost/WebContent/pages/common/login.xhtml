@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body style="background-color: #444444">
+	<center>
+		<h:form id="header" prependId="false">
+
+			<!-- Id's must not be changed to support spring security check -->
+			<p:panelGrid columns="2" styleClass="grid">
+				<f:facet name="LogIn">
+					<h:outputLabel title="Title" value="Test" />
+				</f:facet>
+
+				<h:outputLabel for="j_username" value="User: * " />
+				<p:inputText id="j_username" required="true"
+					value="#{loginMntBean.userName}"
+					requiredMessage="Please enter username" label="username" />
+
+				<h:outputLabel for="j_password" value="Password: * " />
+				<h:inputSecret id="j_password" label="password" required="true"
+					value="#{loginMntBean.password}"
+					requiredMessage="Please enter password" />
+
+				<f:facet name="footer">
+					<h:commandButton type="submit" id="login" value="Login"
+						action="#{loginMntBean.login}" />
+				</f:facet>
+
+			</p:panelGrid>
+
+			<!-- Messages must be global here, to show bad credentials -->
+			<h:messages style="color:red" globalOnly="true" />
+			<f:facet name="error">
+				<h:message for="j_username" display="text" style="color:red" />
+				<h:message for="j_password" display="text" style="color:red" />
+			</f:facet>
+		</h:form>
+	</center>
+</h:body>
+
+</html>

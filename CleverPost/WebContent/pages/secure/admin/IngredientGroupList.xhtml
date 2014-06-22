@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<ui:composition template="../../templates/List.xhtml">
+	<ui:param name="bean" value="#{ingridientGroupListBean}"></ui:param>
+	<ui:param name="list_title" value="#{ingridientGroupListTitle}"></ui:param>
+	<ui:define name="columns">
+
+		<p:column headerText="#{msg.ingridientGroupTableName}">
+			<h:outputText value="#{item.name}" />
+		</p:column>
+
+
+
+	</ui:define>
+</ui:composition>
+</html>

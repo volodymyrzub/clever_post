@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<ui:composition template="../../templates/List.xhtml">
+	<ui:param name="bean" value="#{userListBean}"></ui:param>
+	<ui:param name="list_title" value="#{msg.userTitle}"></ui:param>
+	<ui:define name="columns">
+
+		<p:column headerText="#{msg.usernameTableName}">
+			<h:outputText value="#{item.username}" />
+		</p:column>
+
+		<p:column headerText="#{msg.userTableIsEnabled}">
+			<h:outputText value="#{item.enabled}">
+				<f:converter converterId="BooleanConverter" />
+			</h:outputText>
+		</p:column>
+
+		<p:column headerText="#{msg.usernameTableRole}">
+			<h:outputText value="#{item.userRole}">
+				<f:converter converterId="UserRoleConverter" />
+			</h:outputText>
+		</p:column>
+
+	</ui:define>
+
+</ui:composition>
+</html>
